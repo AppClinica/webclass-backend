@@ -10,30 +10,19 @@
   <div id="page-wrapper">
 
     <!-- Header -->
-				<header id="header" class="alt">
-					<h1><a href="/">WEB CLASS</a> by Grupo 04</h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="/">Inicio</a></li>
-							<li>
-								<a href="#" class="icon solid fa-angle-down">Layouts</a>
-								<ul>
-									<li><a href="generic.html">Generic</a></li>
-									<li><a href="contact.html">Contact</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="/login" class="button">Inicia Sesión</a></li>
-						</ul>
-					</nav>
-				</header>
+    <header id="header" class="alt">
+      <h1><a href="/">WEB CLASS</a> by Grupo 04</h1>
+      <nav id="nav">
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/login" class="button">Inicia Sesión</a></li>
+        </ul>
+      </nav>
+    </header>
 
     <!-- Bienvenida -->
     <section class="container box" style="margin-top: 5em; text-align: center;">
-      <h2>¡Bienvenido, pequeño genio! 🎓</h2>
+      <h2 id="saludo">¡Bienvenido, pequeño genio! 🎓</h2>
       <p>Selecciona el recurso que quieras usar hoy:</p>
     </section>
 
@@ -106,5 +95,13 @@
   <script src="assets/js/breakpoints.min.js"></script>
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
+
+  <!-- Personalizar saludo -->
+  <script>
+    const nombre = localStorage.getItem('nombreUsuario');
+    if (nombre) {
+      document.getElementById('saludo').innerText = `¡Bienvenido, ${nombre}! 🎓`;
+    }
+  </script>
 </body>
 </html>

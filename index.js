@@ -44,7 +44,7 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-app.get('/bienvenida', (req, res) => {
+app.get('/bienvenido', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'bienvenida.html'));
 });
 

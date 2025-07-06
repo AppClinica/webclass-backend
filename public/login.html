@@ -15,11 +15,19 @@
         <p>Inicia sesión para comenzar tu aventura matemática.</p>
 
         <form id="form-login">
-          <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" required />
-          <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña secreta" required />
-          <ul class="actions special">
-            <li><button type="submit" class="primary">¡Vamos!</button></li>
-          </ul>
+          <div class="row gtr-uniform">
+            <div class="col-12">
+              <input type="text" name="usuario" placeholder="Nombre de usuario" required />
+            </div>
+            <div class="col-12">
+              <input type="password" name="contraseña" placeholder="Contraseña secreta" required />
+            </div>
+            <div class="col-12">
+              <ul class="actions special">
+                <li><input type="submit" value="¡Vamos!" class="primary" /></li>
+              </ul>
+            </div>
+          </div>
         </form>
 
         <a class="back-button" href="/" style="color: #e58e72; font-weight: bold; display: inline-block; margin-top: 1.5em;">
@@ -36,26 +44,29 @@
   </body>
 
   <script>
-  document.getElementById("form-login").addEventListener("submit", async function(e) {
-    e.preventDefault(); // evita envío tradicional
+    document.getElementById("form-login").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const usuario = document.querySelector("input[name='usuario']").value;
+      const password = document.querySelector("input[name='contraseña']").value;
 
-    const usuario = document.getElementById("usuario").value;
-    const password = document.getElementById("contraseña").value;
-
-    const response = await fetch("/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ usuario, password })
+      fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ usuario, password })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          localStorage.setItem("nombreUsuario", data.usuario.nombre);
+          window.location.href = "/bienvenido";
+        } else {
+          alert("⚠️ Usuario o contraseña incorrectos");
+        }
+      })
+      .catch(err => {
+        console.error("Error en login:", err);
+        alert("Ocurrió un error. Inténtalo de nuevo.");
+      });
     });
-
-    const data = await response.json();
-
-    if (data.success) {
-      // Redirige a bienvenida con parámetros
-      window.location.href = `/bienvenida?usuario=${encodeURIComponent(usuario)}`;
-    } else {
-      alert("❌ Usuario o contraseña incorrectos");
-    }
-  });
-</script>
+  </script>
 </html>
