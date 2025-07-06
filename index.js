@@ -19,11 +19,11 @@ const upload = multer({ storage });
 
 // Conexión a MySQL (Railway u otro)
 const db = mysql.createConnection({
-  host: 'TU_HOST',
-  user: 'TU_USER',
-  password: 'TU_PASS',
-  database: 'TU_DB',
-  port: 3306
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 // Ruta de prueba
@@ -31,16 +31,17 @@ app.get('/', (_, res) => res.send('Servidor WebClass funcionando.'));
 
 // Login
 app.post('/login', (req, res) => {
-  const { correo, password } = req.body;
-  db.query('SELECT * FROM usuarios WHERE correo = ? AND password = ?', [correo, password], (err, results) => {
+  const { usuario, password } = req.body;
+  db.query('SELECT * FROM usuarios WHERE usuario = ? AND password = ?', [usuario, password], (err, results) => {
     if (err) return res.status(500).json({ error: 'Error en servidor' });
     if (results.length > 0) {
       res.json({ success: true, usuario: results[0] });
     } else {
-      res.json({ success: false });
+      res.json({ success: false, message: 'Usuario o contraseña incorrectos' });
     }
   });
 });
+
 
 // Subida de archivos
 app.post('/subir-archivo', upload.single('archivo'), (req, res) => {
