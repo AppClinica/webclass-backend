@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Inicia Sesión - WebClass</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="login-page is-preload">
+
+    <div id="page-wrapper">
+      <section class="container box" style="max-width: 400px; text-align: center; margin: 5em auto;">
+        <img src="images/robot1.png" alt="WebClass" style="width: 120px; margin-bottom: 1em;" />
+        <h2 style="color: #e58e72;">¡Hola, pequeño genio!</h2>
+        <p>Inicia sesión para comenzar tu aventura matemática.</p>
+
+        <form action="bienvenida.html" method="post">
+          <div class="row gtr-uniform">
+            <div class="col-12">
+              <input type="text" name="usuario" placeholder="Nombre de usuario" required />
+            </div>
+            <div class="col-12">
+              <input type="password" name="contraseña" placeholder="Contraseña secreta" required />
+            </div>
+            <div class="col-12">
+              <ul class="actions special">
+                <li><input type="submit" value="¡Vamos!" class="primary" /></li>
+              </ul>
+            </div>
+          </div>
+        </form>
+
+        <a class="back-button" href="index.html" style="color: #e58e72; font-weight: bold; display: inline-block; margin-top: 1.5em;">
+          ⟵ Volver al inicio
+        </a>
+      </section>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
