@@ -1,23 +1,32 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const mysql = require('mysql2');
+const path = require('path');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/uploads', express.static('uploads'));
 
-// Multer: manejo de archivos
+// Servir archivos estáticos desde "public"
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Servir archivos subidos
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Configuración de Multer para subir archivos
 const storage = multer.diskStorage({
   destination: 'uploads/',
   filename: (_, file, cb) => cb(null, Date.now() + '-' + file.originalname)
 });
 const upload = multer({ storage });
 
-// Conexión a MySQL (Railway u otro)
+// Conexión a base de datos
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -26,8 +35,10 @@ const db = mysql.createConnection({
   port: process.env.DB_PORT
 });
 
-// Ruta de prueba
-app.get('/', (_, res) => res.send('Servidor WebClass funcionando.'));
+// Ruta raíz redirige a index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Login
 app.post('/login', (req, res) => {
@@ -41,7 +52,6 @@ app.post('/login', (req, res) => {
     }
   });
 });
-
 
 // Subida de archivos
 app.post('/subir-archivo', upload.single('archivo'), (req, res) => {
