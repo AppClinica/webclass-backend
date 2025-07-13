@@ -379,7 +379,7 @@
     const contraseña = this.contraseña.value;
 
     try {
-      const respuesta = await fetch("http://localhost:3000/login", {  // Cambiado a local
+      const respuesta = await fetch("https://webclass-backend.onrender.com/login", {  // Cambiado a local
         method: "POST",
         headers: {
           "Content-Type": "application/json"
