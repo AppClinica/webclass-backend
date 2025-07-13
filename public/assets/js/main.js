@@ -1,84 +1,71 @@
-/*
-	Alpha by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+/* main.js actualizado para WebClass con barra fija corregida */
 
-(function($) {
+(function ($) {
+  var $window = $(window),
+    $body = $('body');
 
-	var	$window = $(window),
-		$body = $('body'),
-		$header = $('#header'),
-		$banner = $('#banner');
+  // Breakpoints para diseño responsive
+  breakpoints({
+    xlarge: ['1281px', '1680px'],
+    large: ['981px', '1280px'],
+    medium: ['737px', '980px'],
+    small: ['481px', '736px'],
+    xsmall: ['361px', '480px'],
+    xxsmall: [null, '360px']
+  });
 
-	// Breakpoints.
-		breakpoints({
-			wide:      ( '1281px',  '1680px' ),
-			normal:    ( '981px',   '1280px' ),
-			narrow:    ( '737px',   '980px'  ),
-			narrower:  ( '737px',   '840px'  ),
-			mobile:    ( '481px',   '736px'  ),
-			mobilep:   ( null,      '480px'  )
-		});
+  // Eliminar clase preload
+  $window.on('load', function () {
+    setTimeout(function () {
+      $body.removeClass('is-preload');
+    }, 100);
+  });
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+  // Dropotron solo para el menú superior
+  $('#nav > ul').dropotron({
+    alignment: 'right',
+    offsetY: -15,
+    baseZIndex: 10000
+  });
 
-	// Dropdowns.
-		$('#nav > ul').dropotron({
-			alignment: 'right'
-		});
+  // Clonar menú original para el panel lateral
+  const $navOriginal = $('#nav');
+  const $navClone = $navOriginal.clone(true).attr('id', 'navClonado');
 
-	// NavPanel.
+  // Eliminar estilos heredados que interfieren con el panel lateral
+  $navClone.find('ul').removeAttr('style').removeClass('dropotron');
+  $navClone.find('li').removeClass('hover');
 
-		// Button.
-			$(
-				'<div id="navButton">' +
-					'<a href="#navPanel" class="toggle"></a>' +
-				'</div>'
-			)
-				.appendTo($body);
+  // Botón hamburguesa
+  $('<div id="navButton">\n  <a href="#navPanel" class="toggle"></a>\n</div>').appendTo($body);
 
-		// Panel.
-			$(
-				'<div id="navPanel">' +
-					'<nav>' +
-						$('#nav').navList() +
-					'</nav>' +
-				'</div>'
-			)
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'left',
-					target: $body,
-					visibleClass: 'navPanel-visible'
-				});
+  // Crear el panel lateral e insertar el menú clonado
+  $('<div id="navPanel">\n  <nav></nav>\n</div>')
+    .appendTo($body)
+    .panel({
+      delay: 500,
+      hideOnClick: true,
+      hideOnSwipe: true,
+      resetScroll: true,
+      resetForms: true,
+      side: 'left',
+      target: $body,
+      visibleClass: 'navPanel-visible'
+    })
+    .find('nav')
+    .append($navClone.children());
 
-	// Header.
-		if (!browser.mobile
-		&&	$header.hasClass('alt')
-		&&	$banner.length > 0) {
+  // ✅ CORREGIDO: No quitar clase 'alt', solo cambiar color si deseas efecto visual
+  const $header = $('#header');
+if ($header.hasClass('alt')) {
+  $window.on('scroll', function () {
+    if ($window.scrollTop() > 100) {
+      $header.removeClass('alt');
+    } else {
+      $header.addClass('alt');
+    }
+  });
+}
 
-			$window.on('load', function() {
-
-				$banner.scrollex({
-					bottom:		$header.outerHeight(),
-					terminate:	function() { $header.removeClass('alt'); },
-					enter:		function() { $header.addClass('alt reveal'); },
-					leave:		function() { $header.removeClass('alt'); }
-				});
-
-			});
-
-		}
 
 })(jQuery);

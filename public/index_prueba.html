@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>WebClass Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="landing is-preload">
+
+  <header id="header" class="alt">
+    <h1><a href="#">WEBCLASS DEMO</a></h1>
+    <nav id="nav">
+      <ul>
+        <li><a href="#" data-i18n="inicio">Inicio</a></li>
+        <li>
+          <a href="#" class="icon solid fa-angle-down">Idiomas</a>
+          <ul>
+            <li><a href="#" data-lang="es">Español</a></li>
+            <li><a href="#" data-lang="en">Inglés</a></li>
+            <li><a href="#" data-lang="pt">Portugués</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="banner">
+    <h2 data-i18n="banner_title">Aprender Matemáticas Nunca Fue Tan Divertido</h2>
+    <p data-i18n="banner_subtitle">Una plataforma amigable y accesible que te acompaña paso a paso.</p>
+  </section>
+
+  <footer>
+    <ul>
+      <li data-i18n="copyright">© WebClass. Todos los derechos reservados.</li>
+    </ul>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.dropotron.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script>
+    // Código reducido de main.js para este demo
+    (function($) {
+      $(function() {
+        $('<div id="navButton"><a href="#navPanel" class="toggle"></a></div>').appendTo("body");
+        $('<div id="navPanel"><nav id="navClonado">' + $('#nav').html() + '</nav></div>')
+          .appendTo("body")
+          .panel({
+            delay: 500,
+            hideOnClick: true,
+            hideOnSwipe: true,
+            resetScroll: true,
+            resetForms: true,
+            side: 'left',
+            target: $('body'),
+            visibleClass: 'navPanel-visible'
+          });
+      });
+    })(jQuery);
+  </script>
+  <script src="assets/js/translate.js"></script>
+  <script src="assets/js/lang.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const idiomaGuardado = localStorage.getItem("idiomaWebClass") || "es";
+      cambiarIdioma(idiomaGuardado);
+    });
+
+    document.addEventListener("click", function (e) {
+      const langLink = e.target.closest("a[data-lang]");
+      if (langLink) {
+        e.preventDefault();
+        const idioma = langLink.getAttribute("data-lang");
+        localStorage.setItem("idiomaWebClass", idioma);
+        cambiarIdioma(idioma);
+      }
+    }, true);
+  </script>
+</body>
+</html>

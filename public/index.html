@@ -1,200 +1,725 @@
 <!DOCTYPE HTML>
-<html>
-	<head>
-		<title>WEBCLASS by Grupo 04</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="landing is-preload">
-		<div id="page-wrapper">
+<html lang="es">
+<head>
+  <title>WEBCLASS por Grupo 04</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+  <meta name="description" content="WebClass es una plataforma interactiva para aprender matemáticas jugando, con videos, juegos, retos y más." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+<style>
+  :root {
+    --color-fondo: #fff;
+    --color-texto: #000;
+    --color-secundario: #f8f8f8;
+    --color-link-hover: #e89980;
+    --color-titulo-dark: #ff884d;
+  }
 
-			<!-- Header -->
-				<header id="header" class="alt">
-					<h1><a href="/">WEB CLASS</a> by Grupo 04</h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="/">Inicio</a></li>
-							<li>
-								<a href="#" class="icon solid fa-angle-down">Layouts</a>
-								<ul>
-									<li><a href="generic.html">Generic</a></li>
-									<li><a href="contact.html">Contact</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li>
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Option One</a></li>
-											<li><a href="#">Option Two</a></li>
-											<li><a href="#">Option Three</a></li>
-											<li><a href="#">Option Four</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="/login" class="button">Inicia Sesión</a></li>
-						</ul>
-					</nav>
-				</header>
+  body {
+    background:
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+      url("assets/css/images/overlay.png");
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+    color: var(--color-texto);
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1.1rem;
+  }
 
-			<!-- Banner -->
-				<section id="banner">
-					<h2>Aprender Matemáticas Nunca Fue Tan Divertido</h2>
-					<p>Una plataforma amigable y accesible que te acompaña paso a paso.</p>
-					<ul class="actions special">
-						<li><a href="/login" class="button primary">¡Inicia Sesión!</a></li>
-						<li><a href="#" class="button">Inicia como Invitado</a></li>
-					</ul>
-				</section>
+  body.dark {
+    --color-fondo: #111;
+    --color-texto: #fff;
+    --color-secundario: #333;
+    --color-link-hover: #ffa56a;
+    background: #111 !important;
+    background-attachment: fixed;
+  }
 
-			<!-- Main -->
-				<section id="main" class="container">
+  body.large-text {
+    font-size: 1.3rem;
+  }
 
-					<section class="box special">
-						<header class="major">
-							<h2>UNA EXPERIENCIA INTERACTIVA PARA APRENDER JUGANDO</h2>
-							<p>Refuerza tus conocimientos con actividades diseñadas para estudiantes de primaria.
-							<br>WebClass ofrece tutoriales, retos, juegos, videos y simulacros de exámenes para reforzar tus conocimientos en matemáticas desde la casa o la escuela.</p>
-						</header>
-						<span class="image featured"><img src="images/bannermath.png" alt="" /></span>
-					</section>
-					<!-- iconos-->
-					
-					<section class="box special features">
-						<div class="features-row">
-							<section>
-								<a href="juegos.html">
-									<span class="icon solid major fa-gamepad accent2"></span>
-									<h3>Juegos Interactivos</h3>
-									<p>Aprende matemáticas resolviendo desafíos divertidos.</p>
-								</a>
-							</section>
-							<section>
-								<a href="videos.html">
-									<span class="icon solid major fa-video accent3"></span>
-									<h3>Videos Educativos</h3>
-									<p>Visualiza explicaciones claras con animaciones didácticas.</p>
-								</a>
-							</section>
-						</div>
-						<div class="features-row">
-							<section>
-								<a href="retos.html">
-									<span class="icon solid major fa-trophy accent4"></span>
-									<h3>Retos y Logros</h3>
-									<p>Completa retos semanales y desbloquea medallas.</p>
-								</a>
-							</section>
-							<section>
-								<a href="consultas.html">
-									<span class="icon solid major fa-comments accent5"></span>
-									<h3>Consultas en Línea</h3>
-									<p>Envía tus dudas y recibe ayuda de forma clara y rápida.</p>
-								</a>
-							</section>
-						</div>
-					</section>
+  .dropotron.level-0 {
+    background-color: var(--color-secundario) !important;
+    border-radius: 6px;
+    padding: 0.5em 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
 
-					<div class="row">
-						<div class="col-6 col-12-narrower">
+  .dropotron.level-0 li a {
+    display: block;
+    padding: 0.75em 1.5em;
+    color: var(--color-texto);
+    font-weight: 400;
+    text-decoration: none;
+  }
 
-							<section class="box special">
-								<span class="image featured"><img src="images/bg.jpg" alt="" /></span>
-								<h3>Explora Temas Nuevos</h3>
-								<p>Accede a contenidos divertidos sobre suma, resta, multiplicación y más.</p>
-								<ul class="actions special">
-									<li><a href="#" class="button alt">Más información</a></li>
-								</ul>
-							</section>
+  .dropotron.level-0 li a:hover {
+    background-color: var(--color-link-hover) !important;
+    color: #fff !important;
+  }
 
-						</div>
-						<div class="col-6 col-12-narrower">
+  #navPanel nav ul ul {
+    display: block !important;
+    position: relative !important;
+    background: none !important;
+    box-shadow: none !important;
+    top: auto !important;
+    left: auto !important;
+    opacity: 1 !important;
+    z-index: auto !important;
+  }
 
-							<section class="box special">
-								<span class="image featured"><img src="images/bg2.jpg" alt="" /></span>
-								<h3>Aprende a tu Ritmo</h3>
-								<p>Disfruta de actividades adaptadas a tu nivel para reforzar tu aprendizaje paso a paso.</p>
-								<ul class="actions special">
-									<li><a href="#" class="button alt">Más información</a></li>
-								</ul>
-							</section>
+  #navPanel nav ul li ul li a {
+    padding-left: 1.5em;
+    color: #fff;
+    background: transparent;
+  }
 
-						</div>
-					</div>
+  #footer .icons a {
+    color: #777 !important;
+  }
 
-				</section>
+  #footer li {
+    font-size: 1.1em;
+    color: #444;
+    font-weight: 500;
+  }
 
-			 <!-- CTA -->
-				<section id="cta" style="background-color: #e58e72; text-align: center;">
-				  <h2>¿Quieres Probar WebClass?</h2>
-				  <p>¿Te gustaría usar WebClass en tus clases? Deja tu contacto y nos comunicaremos contigo para una propuesta personalizada.</p>
+  .dark .box.special h2,
+  .dark .box.special h3,
+  .dark .box.special p,
+  .dark .box.special a {
+    color: #ff884d !important;
+  }
 
-				  <form>
-					<div class="row gtr-50 gtr-uniform">
-					  <div class="col-6 col-12-mobilep">
-						<input type="email" name="email" id="email" placeholder="Correo Electrónico" />
-					  </div>
-					  <div class="col-3 col-12-mobilep">
-						<input type="submit" value="Contáctanos" class="contact-button" />
-					  </div>
-					  <div class="col-3 col-12-mobilep">
-						<button type="button" id="btnInfo" class="contact-button" style="background:#fff; color:#e58e72;">¿Cómo se usa?</button>
-					  </div>
-					</div>
-				  </form>
+  body:not(.dark) .box.special.features h2,
+  body:not(.dark) .box.special.features h3,
+  body:not(.dark) .box.special.features p,
+  body:not(.dark) .box.special.features a {
+    color: var(--color-texto) !important;
+  }
 
-				  <!-- Tarjeta emergente -->
-				  <div id="infoCard" style="display:none; margin-top:2em; background:#fff; color:#333; padding:1.5em; border-radius:10px; max-width:600px; margin-left:auto; margin-right:auto;">
-					<h3>¿Cómo se usa WebClass?</h3>
-					<p>WebClass te permite aprender matemáticas de manera divertida. Puedes acceder a juegos, videos, retos y enviar consultas desde cualquier lugar. Solo necesitas una cuenta o entrar como invitado.</p>
-				  </div>
-				</section>
+  #header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10001;
+    background-color: rgba(47, 47, 47, 0.95);
+    color: white;
+    transition: background-color 0.3s ease;
+  }
 
-				<script>
-				  document.getElementById("btnInfo").addEventListener("click", function() {
-					const card = document.getElementById("infoCard");
-					card.style.display = card.style.display === "none" ? "block" : "none";
-				  });
-				</script>
+  #header a,
+  #header .button {
+    color: white !important;
+  }
 
-			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-						<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Diseñado: GRUPO 04</a></li>
-					</ul>
-				</footer>
+  body.dark #header a,
+  body.dark #header .button {
+    color: #ff884d !important;
+  }
 
+  #header .button:hover {
+    background-color: #e58e72;
+    color: white !important;
+  }
+
+  #page-wrapper {
+    padding-top: 5em;
+  }
+
+  #header.alt {
+    background-color: transparent !important;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  #header:not(.alt) {
+    background-color: rgba(47, 47, 47, 0.95);
+    color: #fff;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  #cta input[type="email"],
+  #cta input[type="text"],
+  #cta input[type="submit"],
+  #cta button.contact-button {
+    font-size: 1em;
+    height: auto;
+    padding: 0.8em 1em;
+    line-height: 1.5em;
+    box-sizing: border-box;
+  }
+
+  .contact-button {
+    background-color: white;
+    color: var(--color-link-hover);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .contact-button:hover {
+    background-color: var(--color-link-hover);
+    color: white;
+  }
+
+  body.large-text #cta input,
+  body.large-text #cta button.contact-button {
+    font-size: 1.15em;
+    padding: 1em;
+  }
+
+  @media screen and (min-width: 1024px) {
+    body {
+      font-size: 1.15rem;
+    }
+  }
+
+  #nav li a[data-lang] {
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+  }
+
+  .modal-info {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-info.activo {
+    display: flex !important;
+  }
+
+  .modal-contenido-info {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    padding: 2em;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    animation: aparecerModal 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  body.dark .modal-contenido-info h3,
+  body.dark .modal-contenido-info p {
+    color: var(--color-titulo-dark) !important;
+  }
+
+  .cerrar-info {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: red;
+  }
+
+  .modal-contenido-info .btn-ir-inicio {
+    margin-top: 1.5em;
+    display: inline-block;
+    padding: 0.6em 1.2em;
+    background-color: var(--color-link-hover);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .modal-contenido-info .btn-ir-inicio:hover {
+    background-color: #ff7020;
+  }
+
+  @keyframes aparecerModal {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @media screen and (max-width: 480px) {
+    .modal-contenido-info {
+      padding: 1.5em;
+    }
+  }
+
+  /* BOTONES DE SECCIÓN FEATURES */
+  .boton-redireccion {
+    display: inline-block;
+    background-color: #e89980;
+    color: #fff !important;
+    font-weight: 700;
+    padding: 0.5em 1.5em;
+    border-radius: 2em;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 1em;
+    border: none;
+  }
+
+  .boton-redireccion:hover {
+    background-color: #d97a63;
+  }
+
+  body.dark .boton-redireccion {
+    background-color: #ffc285;
+    color: #000 !important;
+  }
+
+  body.dark .boton-redireccion:hover {
+    background-color: #ffb15e;
+  }
+  
+	/* BOTONES DEL BANNER */
+	#banner .button,
+	#banner .button.primary {
+	  color: #hhhhhhhh !important;
+	}
+
+	body.dark #banner .button,
+	body.dark #banner .button.primary {
+	  color: #ff884d !important;
+	}
+
+	body.dark .boton-redireccion[style] {
+	  color: #000 !important;
+	}
+
+	/* Títulos de los botones (h3) en modo normal, sección features */
+	body:not(.dark) .box.special.features h3 {
+	  color: #fff !important;
+	}
+
+	/* Footer dinámico para modo claro/oscuro */
+	#footer {
+	  text-align: center;
+	  padding: 2em 0;
+	  background-color: var(--color-secundario);
+	  color: var(--color-texto);
+	  transition: background-color 0.3s ease, color 0.3s ease;
+	}
+
+	body.dark #footer {
+	  background-color: #111;
+	  color: var(--color-titulo-dark);
+	}
+
+	body.dark #footer li,
+	body.dark #footer .copyright li,
+	body.dark #footer .icons a {
+	  color: var(--color-titulo-dark) !important;
+	}
+</style>
+</head>
+<body class="landing is-preload">
+  <div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header" class="alt">
+      <h1><a href="index.html"><strong>WEB CLASS</strong> <span data-i18n="by_grupo">by Grupo 04</span></h1>
+      <nav id="nav">
+        <ul>
+          <li><a href="index.html" data-i18n="inicio">Inicio</a></li>
+		  <li id="menu-contenido">
+		    <a href="#" class="icon solid fa-angle-down" data-i18n="nav_layouts">Contenido</a>
+		    <ul>
+			  <li><a href="videos.html" data-i18n="nav_videos">Videos Educativos</a></li>
+			  <li><a href="juegos.html" data-i18n="nav_juegos">Juegos Interactivos</a></li>
+			  <li><a href="practicas.html" data-i18n="nav_practicas">Prácticas</a></li>
+			  <li><a href="simulacros.html" data-i18n="nav_simulacros">Simulacros</a></li>
+		    </ul>
+		  </li>
+          <li><button onclick="toggleDarkMode()" class="button" aria-label="Activar modo oscuro">🌙 <span data-i18n="modo_oscuro">Modo oscuro</span></button></li>
+          <li><button onclick="toggleTextSize()" class="button" aria-label="Aumentar tamaño del texto">🔠 <span data-i18n="aumentar_texto">Aumentar texto</span></button></li>
+          <li><button onclick="toggleVoice()" class="button" aria-label="Activar lector de pantalla">🗣️ <span data-i18n="leer_pagina">Leer página</span></button></li>
+			<li>
+			  <a href="#" class="icon solid fa-angle-down"><span class="icon solid fa-globe"></span> <span data-i18n="idioma">Idiomas</span></a>
+			  <ul>
+				<li>
+				  <a href="#" data-lang="es">
+					<img src="images/peru.png" alt="Español" style="width: 20px; height: 14px; vertical-align: middle; margin-right: 6px;" />
+					Español
+				  </a>
+				</li>
+				<li>
+				  <a href="#" data-lang="en">
+					<img src="images/usa.png" alt="Inglés" style="width: 20px; height: 14px; vertical-align: middle; margin-right: 6px;" />
+					Inglés
+				  </a>
+				</li>
+				<li>
+				  <a href="#" data-lang="pt">
+					<img src="images/brasil.png" alt="Português" style="width: 20px; height: 14px; vertical-align: middle; margin-right: 6px;" />
+					Portugués
+				  </a>
+				</li>
+			  </ul>
+			</li>
+          <li><a href="login.html" class="button" data-i18n="inicia_sesion">Inicia Sesión</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Banner -->
+    <section id="banner">
+      <h2 data-i18n="banner_title">Aprender Matemáticas Nunca Fue Tan Divertido</h2>
+      <p data-i18n="banner_subtitle">Una plataforma amigable y accesible que te acompaña paso a paso.</p>
+      <ul class="actions special">
+        <li><a href="login.html" class="button primary" data-i18n="inicia_sesion">Inicia Sesión</a></li>
+        <li><a href="bienvenida.html" class="button" onclick="iniciarComoInvitado()" data-i18n="inicia_invitado">Inicia como Invitado</a></li>
+      </ul>
+    </section>
+
+	<!-- Main -->
+		<section id="main" class="container">
+		  <section class="box special">
+			<header class="major">
+			  <h2 data-i18n="intro_title">UNA EXPERIENCIA INTERACTIVA PARA APRENDER JUGANDO</h2>
+			  <p data-i18n="intro_text">
+				Refuerza tus conocimientos con actividades diseñadas para estudiantes de primaria.<br>
+				WebClass ofrece tutoriales, retos, juegos, videos y simulacros de exámenes para reforzar tus conocimientos en matemáticas desde la casa o la escuela.
+			  </p>
+			</header>
+			<span class="image featured"><img src="images/bannermath.png" alt="Banner de Mates" /></span>
+		  </section>
+
+		  <section class="box special features">
+		  <div class="features-row">
+			<section>
+			  <span class="icon solid major fa-gamepad accent2"></span>
+			  <h3 data-i18n="juegos_titulo">Juegos Interactivos</h3>
+			  <p data-i18n="juegos_texto">Aprende matemáticas resolviendo desafíos divertidos.</p>
+			  <a href="juegos.html" class="boton-redireccion" data-i18n="juegos_titulo">Juegos Interactivos</a>
+			</section>
+			<section>
+			  <span class="icon solid major fa-video accent3"></span>
+			  <h3 data-i18n="videos_titulo">Videos Educativos</h3>
+			  <p data-i18n="videos_texto">Visualiza explicaciones claras con animaciones didácticas.</p>
+			  <a href="videos.html" class="boton-redireccion" data-i18n="videos_titulo">Videos Educativos</a>
+			</section>
+		  </div>
+		  <div class="features-row">
+			<section>
+			  <span class="icon solid major fa-trophy accent4"></span>
+			  <h3 data-i18n="retos_titulo">Retos y Logros</h3>
+			  <p data-i18n="retos_texto">Completa retos semanales y desbloquea medallas.</p>
+			  <a href="retos.html" class="boton-redireccion" data-i18n="retos_titulo">Retos y Logros</a>
+			</section>
+			<section>
+			  <span class="icon solid major fa-comments accent5"></span>
+			  <h3 data-i18n="consultas_titulo">Consultas en Línea</h3>
+			  <p data-i18n="consultas_texto">Envía tus dudas y recibe ayuda de forma clara y rápida.</p>
+			  <a href="consultas.html" class="boton-redireccion" data-i18n="consultas_titulo">Consultas en Línea</a>
+			</section>
+		  </div>
+		</section>
+
+		<div class="row">
+		  <div class="col-6 col-12-narrower">
+			<section class="box special">
+			  <span class="image featured">
+				<img src="images/bg.jpg" alt="Explora temas de matemáticas básicas" />
+			  </span>
+			  <h3 data-i18n="explora_titulo">Explora Temas Nuevos</h3>
+			  <p data-i18n="explora_texto">Accede a contenidos divertidos sobre suma, resta, multiplicación y más.</p>
+			  <ul class="actions special">
+				<li><a href="javascript:void(0);" class="button alt" onclick="iniciarComoInvitado(); mostrarInfo(1);" data-i18n="mas_info">Más información</a></li>
+			  </ul>
+			</section>
+		  </div>
+		  <div class="col-6 col-12-narrower">
+			<section class="box special">
+			  <span class="image featured">
+				<img src="images/bg2.jpg" alt="Aprende a tu propio ritmo matemático" />
+			  </span>
+			  <h3 data-i18n="aprende_titulo">Aprende a tu Ritmo</h3>
+			  <p data-i18n="aprende_texto">Disfruta de actividades adaptadas a tu nivel para reforzar tu aprendizaje paso a paso.</p>
+			  <ul class="actions special">
+				<li><a href="javascript:void(0);" class="button alt" onclick="iniciarComoInvitado(); mostrarInfo(2);" data-i18n="mas_info">Más información</a></li>
+			  </ul>
+			</section>
+		  </div>
 		</div>
+		</section>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script>
-			  document.querySelectorAll(".profile").forEach((profile) => {
-				profile.addEventListener("click", () => {
-				  profile.classList.toggle("show");
-				});
+      <!-- Formulario CTA -->
+      <section id="cta" role="region" aria-label="Contacto">
+        <h2 data-i18n="cta_titulo">¿Quieres Probar WebClass?</h2>
+        <p data-i18n="cta_texto">¿Te gustaría usar WebClass en tus clases? Deja tu contacto y nos comunicaremos contigo para una propuesta personalizada.</p>
+		<form id="formulario-contacto">
+		  <label for="email" class="sr-only">Correo Electrónico</label>
+		  <div class="row gtr-50 gtr-uniform">
+			<div class="col-6 col-12-mobilep">
+			  <input type="email" name="email" id="email" placeholder="Correo Electrónico" required data-i18n-placeholder="correo" />
+			</div>
+			<div class="col-3 col-12-mobilep">
+			  <input type="submit" id="boton-contacto" class="contact-button" value="Contáctanos" data-i18n-value="contactanos" />
+			</div>
+		  </div>
+		</form>
+      </section>
+    </main>
 
-				// Si haces clic fuera, la tarjeta se oculta
-				document.addEventListener("click", function (e) {
-				  if (!profile.contains(e.target)) {
-					profile.classList.remove("show");
-				  }
-				});
-			  });
-			</script>
-	</body>
+    <!-- Footer -->
+    <footer id="footer" role="contentinfo">
+      <ul class="icons">
+        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+        <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+        <li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+      </ul>
+      <ul class="copyright">
+        <li data-i18n="copyright">© WebClass. Todos los derechos reservados.</li>
+        <li data-i18n="disenado_por">Diseñado por: GRUPO 04</li>
+      </ul>
+    </footer>
+	</div>
+	
+	<!-- Modal de información -->
+	<div id="modalInfo" class="modal-info" role="dialog" aria-modal="true" aria-labelledby="modalInfoTitulo" aria-describedby="modalInfoTexto">
+	  <div class="modal-contenido-info">
+		<span class="cerrar-info" onclick="cerrarInfo()" role="button" tabindex="0" aria-label="Cerrar ventana">❌</span>
+		<h3 id="modalInfoTitulo">...</h3>
+		<p id="modalInfoTexto">...</p>
+		<div class="col-3 col-12-mobilep">
+		<button class="btn-ir-inicio" onclick="redirigirContenido()" data-i18n="btn_ir_contenido">
+		  Revisar el contenido de WebClass
+		</button>
+		</div>
+	  </div>
+	</div>
+	
+  <!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/accessibility.js"></script>
+	<script src="assets/js/translate.js"></script>
+	<script src="assets/js/lang.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const idiomaGuardado = localStorage.getItem("idiomaWebClass") || "es";
+    cambiarIdioma(idiomaGuardado);
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("abrirContenido") === "true") {
+      const trigger = document.querySelector('#menu-contenido > a');
+      if (trigger) {
+        const mouseOverEvent = new MouseEvent("mouseover", {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        });
+        trigger.dispatchEvent(mouseOverEvent);
+      }
+    }
+
+    if (localStorage.getItem("modoOscuroWebClass") === "true") {
+      document.body.classList.add("dark");
+    }
+
+    if (localStorage.getItem("textoGrandeWebClass") === "true") {
+      document.body.classList.add("large-text");
+    }
+
+    const boton = document.getElementById("boton-contacto");
+    if (boton) {
+      boton.addEventListener("click", redirigirContacto);
+    }
+
+    const formulario = document.getElementById("formulario-contacto");
+    const emailInput = document.getElementById("email");
+    if (formulario && emailInput) {
+      formulario.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const email = emailInput.value.trim();
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (email === "" || !regex.test(email)) {
+          alert("Por favor ingresa un correo válido.");
+          emailInput.focus();
+          return;
+        }
+
+        const modal = document.createElement("div");
+        modal.classList.add("modal-info", "activo");
+        modal.setAttribute("role", "dialog");
+        modal.setAttribute("aria-modal", "true");
+        modal.setAttribute("aria-labelledby", "modalInfoTitulo");
+        modal.setAttribute("aria-describedby", "modalInfoTexto");
+
+        modal.innerHTML = `
+          <div class="modal-contenido-info">
+            <span class="cerrar-info" role="button" tabindex="0" aria-label="Cerrar ventana">❌</span>
+            <h3 id="modalInfoTitulo" data-i18n="modal_contacto_titulo">¡Gracias por tu interés!</h3>
+            <p id="modalInfoTexto" data-i18n="modal_contacto_texto">Nos pondremos en contacto contigo muy pronto.</p>
+            <button class="btn-ir-inicio" onclick="location.href='index.html'" data-i18n="btn_ir_contenido">Inicio</button>
+          </div>
+        `;
+        document.body.appendChild(modal);
+
+        const cerrarBtn = modal.querySelector(".cerrar-info");
+        cerrarBtn.addEventListener("click", () => modal.remove());
+        cerrarBtn.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") modal.remove();
+        });
+
+        modal.querySelector(".btn-ir-inicio")?.focus();
+        formulario.reset();
+      });
+    }
+
+    // Accesibilidad para el modal estático (#modalInfo)
+    const cerrarInfoBtn = document.querySelector("#modalInfo .cerrar-info");
+    if (cerrarInfoBtn) {
+      cerrarInfoBtn.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") cerrarInfo();
+      });
+    }
+
+    // Cierre del modal activo con Escape
+    document.addEventListener("keydown", function (e) {
+      const modal = document.querySelector(".modal-info.activo");
+      if (e.key === "Escape" && modal) {
+        modal.classList.remove("activo");
+      }
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    const langLink = e.target.closest("a[data-lang]");
+    if (langLink) {
+      e.preventDefault();
+      const idioma = langLink.getAttribute("data-lang");
+      localStorage.setItem("idiomaWebClass", idioma);
+      cambiarIdioma(idioma);
+
+      if (document.getElementById("modalInfo")?.classList.contains("activo")) {
+        mostrarInfo(window.ultimaOpcionModal || 1);
+      }
+
+      const panel = document.getElementById("navPanel");
+      if (panel?.classList.contains("navPanel-visible")) {
+        panel.classList.remove("navPanel-visible");
+      }
+    }
+  }, true);
+
+  function iniciarComoInvitado() {
+    localStorage.setItem("tipoSesionWebClass", "invitado");
+  }
+
+  function mostrarInfo(opcion) {
+    window.ultimaOpcionModal = opcion;
+    const idioma = localStorage.getItem("idiomaWebClass") || "es";
+
+    const textos_detalle = {
+      es: {
+        1: "Explora nuevos temas con recursos interactivos como videos animados, juegos y desafíos que convierten las matemáticas en una experiencia de descubrimiento divertida y visual, guiada paso a paso para todos los niveles.",
+        2: "Aprende a tu ritmo con un recorrido adaptativo que comienza con una autoevaluación, se ajusta a tu desempeño y refuerza los conceptos clave mediante prácticas personalizadas y retroalimentación constante."
+      },
+      en: {
+        1: "Explore new topics through interactive resources like animated videos, games, and challenges that turn math into a fun and visual discovery experience, guided step by step for all learning levels.",
+        2: "Learn at your own pace with an adaptive path that starts with a self-assessment, adjusts to your progress, and reinforces key concepts through tailored exercises and ongoing feedback."
+      },
+      pt: {
+        1: "Explore novos temas com recursos interativos como vídeos animados, jogos e desafios que tornam a matemática uma experiência divertida e visual de descoberta, guiada passo a passo para todos os níveis.",
+        2: "Aprenda no seu próprio ritmo com um caminho adaptativo que começa com uma autoavaliação, se ajusta ao seu progresso e reforça conceitos importantes com exercícios personalizados e feedback contínuo."
+      }
+    };
+
+    const titulos_modal = {
+      es: { 1: "Explora Temas Nuevos", 2: "Aprende a tu Ritmo" },
+      en: { 1: "Explore New Topics", 2: "Learn at Your Own Pace" },
+      pt: { 1: "Explore Novos Tópicos", 2: "Aprenda no Seu Ritmo" }
+    };
+
+    document.getElementById("modalInfoTitulo").textContent = titulos_modal[idioma]?.[opcion] || "WebClass";
+    document.getElementById("modalInfoTexto").textContent = textos_detalle[idioma]?.[opcion] || "Contenido adicional no disponible.";
+    document.getElementById("modalInfo").classList.add("activo");
+
+    // Foco al botón accesible del modal
+    document.querySelector("#modalInfo .btn-ir-inicio")?.focus();
+  }
+
+  function cerrarInfo() {
+    document.getElementById("modalInfo")?.classList.remove("activo");
+  }
+
+  function redirigirContenido() {
+    window.location.assign("bienvenida.html");
+  }
+
+  function redirigirContacto() {
+    const email = document.getElementById("email").value.trim();
+    if (email !== "") {
+      localStorage.setItem("contactoEmailWebClass", email);
+      window.location.href = "contact.html";
+    }
+  }
+
+  async function cambiarIdioma(lang) {
+    try {
+      const response = await fetch(`assets/lang/${lang}.json`);
+      if (!response.ok) throw new Error("Archivo de idioma no encontrado");
+
+      const traducciones = await response.json();
+      traducirPagina(traducciones);
+    } catch (error) {
+      console.error('[WebClass] Error al cargar el archivo de idioma:', error);
+    }
+  }
+
+  function traducirPagina(traducciones) {
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const clave = el.getAttribute("data-i18n");
+      if (traducciones[clave]) {
+        el.textContent = traducciones[clave];
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      const clave = el.getAttribute("data-i18n-placeholder");
+      if (traducciones[clave]) {
+        el.placeholder = traducciones[clave];
+      }
+    });
+  }
+</script>
+</body>
 </html>

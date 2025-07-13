@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <title>Simulacros - WebClass</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+<style>
+  :root {
+    --color-fondo: #fff;
+    --color-texto: #000;
+    --color-secundario: #f8f8f8;
+    --color-link-hover: #e89980;
+    --color-titulo-dark: #ff884d;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--color-texto);
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    font-size: 1.1rem;
+    padding-top: 4em;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url("images/math.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  body.dark {
+    --color-fondo: #111;
+    --color-texto: #fff;
+    --color-secundario: #333;
+    background: url("images/math.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  body.large-text {
+    font-size: 1.2rem;
+  }
+
+  #page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main, .container {
+    flex: 1;
+  }
+
+  #header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10001;
+    padding: 1em 2em;
+    background-color: rgba(17, 17, 17, 0.95);
+    color: white;
+  }
+
+  #header a,
+  #header .button {
+    color: white !important;
+  }
+
+  #header a[href="/"] {
+    color: white !important;
+    font-weight: bold;
+  }
+
+  body.dark #header a:not([href="/"]),
+  body.dark #header .button {
+    color: var(--color-titulo-dark) !important;
+  }
+
+  body.dark #header h1 a[href="/"] {
+    color: #fff !important;
+    font-weight: bold;
+  }
+
+  body.dark #header .button:hover {
+    background-color: var(--color-link-hover);
+    color: #fff !important;
+  }
+
+  a.button {
+    padding: 0.5em 1.2em;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background-color: var(--color-link-hover);
+    color: #fff !important;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  a.button:hover {
+    background-color: #ffa56a;
+    color: #111 !important;
+  }
+
+  body.dark a.button {
+    background-color: var(--color-link-hover);
+    color: #fff !important;
+  }
+
+  body.dark a.button:hover {
+    background-color: #ffa56a;
+    color: #111 !important;
+  }
+
+  .box.special {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5em 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin: 1em 0;
+  }
+
+  body.dark .box.special {
+    background-color: rgba(30, 30, 30, 0.9) !important;
+    color: white;
+  }
+
+  .box.special h3 {
+    margin-bottom: 0.5em;
+  }
+
+  .game-frame {
+    width: 100%;
+    height: 620px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  #footer2 {
+    background-color: var(--color-secundario);
+    padding: 0.6em 0;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--color-texto);
+    margin-top: auto;
+  }
+
+  body.dark #footer2 {
+    background-color: #111;
+    color: var(--color-titulo-dark);
+  }
+
+  #footer2 ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #footer2 li {
+    font-size: 0.95em;
+    font-weight: 500;
+  }
+
+  .dropotron.level-0 {
+    background-color: var(--color-secundario) !important;
+    border-radius: 6px;
+    padding: 0.5em 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .dropotron.level-0 li a {
+    display: block;
+    padding: 0.75em 1.5em;
+    color: var(--color-texto);
+    text-decoration: none;
+  }
+
+  .dropotron.level-0 li a:hover {
+    background-color: var(--color-link-hover) !important;
+    color: #fff !important;
+  }
+
+  body.dark .dropotron.level-0 {
+    background-color: #1c1c1c !important;
+  }
+
+  body.dark .dropotron.level-0 li a {
+    color: var(--color-titulo-dark) !important;
+  }
+
+  body.dark .dropotron.level-0 li a:hover {
+    background-color: var(--color-titulo-dark) !important;
+    color: #111 !important;
+  }
+
+  .bienvenida-con-imagenes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5em 2em;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    margin: 2em 0 0.5em; /* <== margen inferior reducido */
+  }
+
+  .container + .container {
+    margin-top: 0.5em; /* <== separación menor entre secciones consecutivas */
+  }
+
+  .img-bienvenida, .img-bienvenida1 {
+    width: 160px;
+    object-fit: contain;
+    opacity: 1;
+  }
+
+  .img-bienvenida1 { height: 200px; }
+  .img-bienvenida  { height: 160px; }
+
+  body.dark h1,
+  body.dark h2,
+  body.dark h3,
+  body.dark p,
+  body.dark li,
+  body.dark label {
+    color: var(--color-titulo-dark) !important;
+  }
+
+  body.dark a {
+    color: #fff !important;
+  }
+
+  body.dark a:hover {
+    color: #ffa56a !important;
+    text-decoration: underline;
+  }
+</style>
+</head>
+</head>
+<body class="landing is-preload">
+<div id="body2"></div>
+<div id="page-wrapper">
+
+  <!-- Header -->
+  <header id="header">
+    <h1><a href="index.html">WEB CLASS</a> <span data-i18n="by_grupo">por Grupo 04</span></h1>
+    <nav id="nav">
+      <ul>
+        <li><a href="bienvenida.html" data-i18n="nav_inicio">Inicio</a></li>
+        <li>
+          <a href="#" class="icon solid fa-angle-down" data-i18n="nav_layouts">Contenido</a>
+          <ul>
+            <li><a href="videos.html" data-i18n="nav_videos">Videos Educativos</a></li>
+            <li><a href="juegos.html" data-i18n="nav_juegos">Juegos Interactivos</a></li>
+            <li><a href="practicas.html" data-i18n="nav_practicas">Prácticas</a></li>
+            <li><a href="simulacros.html" data-i18n="nav_simulacros">Simulacros</a></li>
+          </ul>
+        </li>
+        <li><a href="perfil.html" data-i18n="nav_perfil">Mi Perfil</a></li>
+        <li><button onclick="toggleDarkMode()" class="button">🌙 <span data-i18n="modo_oscuro">Modo oscuro</span></button></li>
+        <li><button onclick="toggleTextSize()" class="button">🔠 <span data-i18n="aumentar_texto">Aumentar texto</span></button></li>
+        <li><button onclick="toggleVoice()" class="button">🗣️ <span data-i18n="leer_pagina">Leer página</span></button></li>
+		<li>
+		  <a href="#" class="icon solid fa-angle-down"><span class="icon solid fa-globe"></span> <span data-i18n="idioma">Idiomas</span></a>
+		  <ul>
+            <li><a href="#" data-lang="es"><img src="images/peru.png" alt="Español" style="width: 20px; height: 14px; vertical-align: middle; margin-right: 6px;" />Español</a></li>
+            <li><a href="#" data-lang="en"><img src="images/usa.png" alt="Inglés" style="width: 20px; height: 14px; vertical-align: middle; margin-right: 6px;" />Inglés</a></li>
+            <li><a href="#" data-lang="pt"><img src="images/brasil.png" alt="Português" style="width: 20px; height: 14px; vertical-align: middle; margin-right: 6px;" />Portugués</a></li>
+          </ul>
+		</li>
+        <li><a href="index.html" class="button" data-i18n="cerrar_sesion">Cerrar sesión</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Encabezado -->
+  <section class="container">
+    <div class="row aln-center">
+      <div class="col-12">
+        <section class="box special bienvenida-con-imagenes">
+          <img src="images/robot1.png" alt="Robot" class="img-bienvenida1">
+          <div>
+            <h2 data-i18n="titulo_simulacros">Simulacros</h2>
+            <p data-i18n="texto_simulacros">Pon a prueba tus conocimientos resolviendo exámenes simulados.</p>
+          </div>
+          <img src="images/buhobienvenida.png" alt="Búho" class="img-bienvenida">
+        </section>
+      </div>
+    </div>
+  </section>
+
+	<!-- Simulacros -->
+	<section class="container">
+	  <div class="row aln-center">
+
+		<div class="col-6 col-12-narrower">
+		  <section class="box special" style="text-align: center;">
+			<h3 data-i18n="titulo_simulacro_basico">Simulacro Básico</h3>
+			<a class="button" href="https://forms.gle/ejemplo1" target="_blank" data-i18n="boton_simulacro_basico">Realizar simulacro</a>
+		  </section>
+		</div>
+
+		<div class="col-6 col-12-narrower">
+		  <section class="box special" style="text-align: center;">
+			<h3 data-i18n="titulo_simulacro_final">Simulacro Final</h3>
+			<a class="button" href="https://forms.gle/ejemplo2" target="_blank" data-i18n="boton_simulacro_final">Examen completo</a>
+		  </section>
+		</div>
+
+	  </div>
+	</section>
+
+  <!-- Footer -->
+  <footer id="footer2" role="contentinfo">
+    <ul class="copyright">
+      <li data-i18n="bienvenida_footer">&copy; WebClass - Grupo 04</li>
+    </ul>
+  </footer>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/accessibility.js"></script>
+<script src="assets/js/translate.js"></script>
+<script src="assets/js/lang.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const idiomaGuardado = localStorage.getItem("idiomaWebClass") || "es";
+    cambiarIdioma(idiomaGuardado);
+  });
+
+  document.addEventListener("click", function (e) {
+    const langLink = e.target.closest("a[data-lang]");
+    if (langLink) {
+      e.preventDefault();
+      const idioma = langLink.getAttribute("data-lang");
+      localStorage.setItem("idiomaWebClass", idioma);
+      cambiarIdioma(idioma);
+    }
+  }, true);
+</script>
+</body>
+</html>

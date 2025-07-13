@@ -1,72 +1,413 @@
 <!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Inicia Sesión - WebClass</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-  </head>
-  <body class="login-page is-preload">
+<html lang="es">
+<head>
+  <title>Inicia Sesión - WebClass</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+<style>
+  :root {
+    --color-fondo: #fff;
+    --color-texto: #000;
+    --color-secundario: #f8f8f8;
+    --color-link-hover: #e89980;
+    --color-titulo-dark: #ff884d;
+  }
 
-    <div id="page-wrapper">
-      <section class="container box" style="max-width: 400px; text-align: center; margin: 5em auto;">
-        <img src="images/robot1.png" alt="WebClass" style="width: 120px; margin-bottom: 1em;" />
-        <h2 style="color: #e58e72;">¡Hola, pequeño genio!</h2>
-        <p>Inicia sesión para comenzar tu aventura matemática.</p>
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 1.1rem;
+    color: var(--color-texto);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)),
+      url("https://static.vecteezy.com/system/resources/previews/007/623/394/non_2x/font-design-for-math-and-happy-children-free-vector.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+    transition: background-color 0.3s, color 0.3s;
+  }
 
+  body.dark {
+    --color-fondo: #111;
+    --color-texto: #fff;
+    --color-secundario: #333;
+    --color-link-hover: #ffa56a;
+    background: url("https://static.vecteezy.com/system/resources/previews/007/623/394/non_2x/font-design-for-math-and-happy-children-free-vector.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+  }
+
+  body.large-text {
+    font-size: 1.3rem !important;
+  }
+
+  #header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10001;
+    padding: 1em 2em;
+    background-color: rgba(17, 17, 17, 0.95);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    color: white;
+  }
+
+  #header h1,
+  #header h1 a {
+    margin: 0;
+    font-size: 1.2rem;
+    color: white !important;
+  }
+
+  #header a,
+  #header .button {
+    color: white !important;
+    background: none;
+    border: none;
+  }
+
+  #header .button:hover {
+    background-color: #e58e72;
+    color: white !important;
+  }
+
+  body.dark #header {
+    background-color: rgba(20, 20, 20, 0.9);
+  }
+
+  body.dark #header a:not(h1 a),
+  body.dark #header .button {
+    color: var(--color-titulo-dark) !important;
+  }
+
+  body.dark #header .button:hover {
+    background-color: #ff884d;
+    color: #fff !important;
+  }
+
+  #header h1 span {
+    color: inherit;
+  }
+
+  body.dark #header h1 span {
+    color: var(--color-titulo-dark);
+  }
+
+  #page-wrapper {
+    padding-top: 5em;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #main-background {
+    flex: 1;
+    padding: 4em 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+  }
+
+  .login-card {
+    background-color: rgba(255, 255, 255, 0.96);
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.dark .login-card {
+    background-color: rgba(30, 30, 30, 0.95);
+  }
+
+  .login-card img {
+    width: 90px;
+    margin-bottom: 1em;
+  }
+
+  .login-card h2,
+  .login-card p,
+  .login-card a {
+    margin-bottom: 1em;
+  }
+
+  body.dark .login-card h2,
+  body.dark .login-card p,
+  body.dark .login-card a {
+    color: var(--color-titulo-dark);
+  }
+
+  .login-card input[type="text"],
+  .login-card input[type="password"] {
+    width: 100%;
+    padding: 0.75em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.dark .login-card input {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-color: #555;
+  }
+
+  body.dark .login-card input::placeholder {
+    color: #ff884d !important;
+    opacity: 0.8;
+  }
+
+  .actions2 button {
+    background-color: var(--color-link-hover);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8em 1.5em;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+
+  .actions2 button:hover {
+    background-color: #ff7020;
+  }
+
+  body.dark .actions2 button {
+    background-color: #fff !important;
+    color: #ff884d !important;
+  }
+
+  body.dark .actions2 button:hover {
+    background-color: #ff884d !important;
+    color: #fff !important;
+  }
+
+  a.back-button {
+    display: inline-block;
+    margin-top: 1em;
+    color: var(--color-link-hover);
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  body.dark .back-button {
+    color: var(--color-titulo-dark);
+  }
+
+  #footer2 {
+    background-color: var(--color-secundario);
+    padding: 1em 0;
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--color-texto);
+    margin-top: auto;
+  }
+
+  body.dark #footer2 {
+    background-color: #111;
+    color: var(--color-titulo-dark);
+  }
+
+  #footer2 ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  #footer2 li {
+    font-size: 1em;
+    font-weight: 500;
+  }
+
+  /* Menú desplegable Dropotron - corregido sin romboide */
+  .dropotron.level-0 {
+    background-color: var(--color-secundario) !important;
+    border-radius: 6px;
+    padding: 0.5em 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 0.5em !important;
+    position: absolute !important;
+  }
+
+  .dropotron.level-0 li a {
+    display: flex;
+    align-items: center;
+    padding: 0.75em 1.5em;
+    color: var(--color-texto);
+    font-weight: 400;
+    text-decoration: none;
+  }
+
+  .dropotron.level-0 li a img {
+    margin-right: 8px;
+    width: 20px;
+    height: 14px;
+  }
+
+  .dropotron.level-0 li a:hover {
+    background-color: var(--color-link-hover) !important;
+    color: #fff !important;
+  }
+
+  body.dark .dropotron.level-0 {
+    background-color: #333 !important;
+  }
+
+  body.dark .dropotron.level-0 li a {
+    color: #fff !important;
+  }
+
+  body.dark .dropotron.level-0 li a:hover {
+    background-color: #ffa56a !important;
+    color: #fff !important;
+  }
+</style>
+</head>
+<body class="login-page is-preload">
+  <div id="page-wrapper">
+    <header id="header">
+      <h1><a href="index.html">WEB CLASS</a> <span data-i18n="by_grupo">by Grupo 04</span></h1>
+      <nav id="nav">
+        <ul>
+          <li><a href="index.html" data-i18n="inicio">Inicio</a></li>
+          <li><button onclick="toggleDarkMode()" class="button">🌙 <span data-i18n="modo_oscuro">Modo oscuro</span></button></li>
+          <li><button onclick="toggleTextSize()" class="button">🔠 <span data-i18n="aumentar_texto">Aumentar texto</span></button></li>
+          <li><button onclick="toggleVoice()" class="button">🗣️ <span data-i18n="leer_pagina">Leer página</span></button></li>
+          <li>
+            <a href="#" class="icon solid fa-angle-down"><span class="icon solid fa-globe"></span> <span data-i18n="idioma">Idiomas</span></a>
+            <ul>
+              <li><a href="#" data-lang="es"><img src="images/peru.png" style="width: 20px; height: 14px; margin-right: 6px;" />Español</a></li>
+              <li><a href="#" data-lang="en"><img src="images/usa.png" style="width: 20px; height: 14px; margin-right: 6px;" />Inglés</a></li>
+              <li><a href="#" data-lang="pt"><img src="images/brasil.png" style="width: 20px; height: 14px; margin-right: 6px;" />Portugués</a></li>
+            </ul>
+          </li>
+
+          <li><a href="login.html" class="button" data-i18n="inicia_sesion">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+	
+	<main id="main-background">
+      <section class="login-card" id="loginCard">
+        <img src="images/robot1.png" alt="WebClass">
+        <h2 data-i18n="login_bienvenida">¡Hola, pequeño(a) genio!</h2>
+        <p data-i18n="login_mensaje">Inicia sesión para comenzar tu aventura matemática.</p>
         <form id="form-login">
-          <div class="row gtr-uniform">
-            <div class="col-12">
-              <input type="text" name="usuario" placeholder="Nombre de usuario" required />
-            </div>
-            <div class="col-12">
-              <input type="password" name="contraseña" placeholder="Contraseña secreta" required />
-            </div>
-            <div class="col-12">
-              <ul class="actions special">
-                <li><input type="submit" value="¡Vamos!" class="primary" /></li>
-              </ul>
-            </div>
-          </div>
+          <input type="text" name="usuario" required placeholder="Nombre de usuario" data-i18n-placeholder="login_usuario" />
+          <input type="password" name="contraseña" required placeholder="Contraseña secreta" data-i18n-placeholder="login_contraseña" />
+	<div class="actions2">
+	  <button type="submit"><span data-i18n="login_entrar">🚀 ¡Vamos!</span></button>
+	</div>
+
+	<div class="actions2" style="margin-top: 1em;">
+	  <button type="button" onclick="iniciarComoInvitado()">👤 <span data-i18n="login_invitado">Iniciar como Invitado</span></button>
+	</div>
+
         </form>
-
-        <a class="back-button" href="/" style="color: #e58e72; font-weight: bold; display: inline-block; margin-top: 1.5em;">
-          ⟵ Volver al inicio
-        </a>
+        <a href="index.html" class="back-button" data-i18n="login_volver">⟵ Volver al inicio</a>
       </section>
-    </div>
+    </main>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+	<!-- Footer -->
+	<footer id="footer2" role="contentinfo">
+	  <ul class="copyright">
+		<li data-i18n="bienvenida_footer">&copy; 2025 WebClass - Grupo 04</li>
+	  </ul>
+	</footer>
+	</div>
 
-  <script>
-    document.getElementById("form-login").addEventListener("submit", function (e) {
+<!-- Scripts base -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/accessibility.js"></script>
+<script src="assets/js/translate.js"></script>
+<script src="assets/js/lang.js"></script>
+
+<script>
+  const loginCard = document.querySelector("#loginCard");
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+  }
+
+  function toggleTextSize() {
+    document.body.classList.toggle("large-text");
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const idioma = localStorage.getItem("idiomaWebClass") || "es";
+    cambiarIdioma(idioma);
+    $('#nav > ul').dropotron({ alignment: 'center', offsetY: -10 });
+  });
+
+  document.addEventListener("click", function (e) {
+    const langLink = e.target.closest("a[data-lang]");
+    if (langLink) {
       e.preventDefault();
-      const usuario = document.querySelector("input[name='usuario']").value;
-      const password = document.querySelector("input[name='contraseña']").value;
+      const idioma = langLink.getAttribute("data-lang");
+      localStorage.setItem("idiomaWebClass", idioma);
+      cambiarIdioma(idioma);
+    }
+  }, true);
 
-      fetch("/login", {
+  // Lógica para iniciar sesión normal (conexión con backend local)
+  document.querySelector("#form-login").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const usuario = this.usuario.value;
+    const contraseña = this.contraseña.value;
+
+    try {
+      const respuesta = await fetch("http://localhost:3000/login", {  // Cambiado a local
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ usuario, password })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          localStorage.setItem("nombreUsuario", data.usuario.nombre);
-          window.location.href = "/bienvenido";
-        } else {
-          alert("⚠️ Usuario o contraseña incorrectos");
-        }
-      })
-      .catch(err => {
-        console.error("Error en login:", err);
-        alert("Ocurrió un error. Inténtalo de nuevo.");
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ usuario, contraseña })
       });
-    });
-  </script>
+
+      const data = await respuesta.json();
+
+      if (data.success) {
+        localStorage.setItem("usuarioNombre", data.nombre);
+        localStorage.setItem("usuarioRol", data.rol);
+        window.location.href = "bienvenida.html";
+      } else {
+        alert("❌ Usuario o contraseña incorrectos");
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert("⚠️ No se pudo conectar con el servidor backend");
+    }
+  });
+
+  // Botón: Iniciar como Invitado
+  function iniciarComoInvitado() {
+    localStorage.setItem("usuarioNombre", "Invitado");
+    localStorage.setItem("usuarioRol", "Estudiante");
+    window.location.href = "bienvenida.html";
+  }
+</script>
+</body>
 </html>

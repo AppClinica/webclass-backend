@@ -1,16 +1,5 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic");
-
-/*
-	Alpha by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
-/* Reset */
-
-/* Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain) */
-
 	html, body, div, span, applet, object,
 	iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 	pre, a, abbr, acronym, address, big, cite,
@@ -37,29 +26,6 @@
 
 	body {
 		line-height: 1;
-	}
-	body.login-page {
-	  position: relative;
-	  background-color: #f8f8f8;
-	}
-
-	body.login-page::before {
-	  content: '';
-	  position: fixed;
-	  top: 0; left: 0;
-	  width: 100%; height: 100%;
-	  background: url('https://static.vecteezy.com/system/resources/previews/007/623/394/non_2x/font-design-for-math-and-happy-children-free-vector.jpg');
-	  background-size: cover;
-	  background-position: center;
-	  background-repeat: no-repeat;
-	  z-index: -1;
-	  opacity: 0.4;
-	  filter: blur(2px);
-	}
-
-	#page-wrapper {
-	  position: relative;
-	  z-index: 1;
 	}
 
 	ol, ul {
@@ -3189,7 +3155,7 @@
 		background-image: url("images/overlay.png"), url("../../images/bannermath.png");
 		background-position: top left,						center center;
 		background-repeat: repeat,							no-repeat;
-		background-size: cover;
+		background-size: auto,							cover;
 		color: #fff;
 		padding: 12em 0 20em 0;
 		text-align: center;
@@ -3398,12 +3364,12 @@
 			body, input, select, textarea {
 				font-size: 13pt;
 			}
+
 		/* Banner */
 
 			#banner {
 				padding: 10em 0 18em 0;
 			}
-
 
 	}
 
@@ -3917,30 +3883,5 @@
 			#cta {
 				padding: 2.5em 1em 3em 1em;
 			}
-		/* Mostrar la tarjeta al hacer clic */
-		.profile-container .profile .info {
-		  display: none;
-		}
 
-		.profile-container .profile.show .info {
-		  display: flex;
-		  animation: show 0.3s ease;
-		}
-
-		/* Centrado del botón "Contáctanos" */
-		.contact-button {
-		  display: flex;
-		  justify-content: center;
-		  align-items: center;
-		  padding: 0.8em 1.5em;
-		  border-radius: 10px;
-		  background: white;
-		  color: #e58e72;
-		  border: none;
-		  font-weight: bold;
-		  font-size: 1em;
-		  cursor: pointer;
-		}
-		
-		
 	}

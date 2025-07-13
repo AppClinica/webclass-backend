@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <title>Mi Perfil - WebClass</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <style>
+    :root {
+      --color-fondo: #fff;
+      --color-texto: #000;
+      --color-secundario: #f8f8f8;
+      --color-link-hover: #e89980;
+    }
+
+    html, body {
+      height: 100%; margin: 0; padding: 0;
+      color: var(--color-texto);
+    }
+
+    #page-wrapper {
+      display: flex; flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main { flex: 1; }
+    body { padding-top: 4em; }
+
+    body.dark { background-color: #111; color: #fff; }
+    body.large-text { font-size: 1.15em; }
+
+    body.dark .box.special { background-color: #222 !important; color: #fff; }
+    body.dark #header { background-color: #000 !important; }
+    body.dark #footer2 { background-color: #222 !important; color: #fff; }
+    body.dark h1, body.dark h2, body.dark h3, body.dark p { color: #ffa56a; }
+
+    #header { background-color: #333; color: #fff; }
+    #header nav a, #header h1 a { color: #fff !important; }
+
+    #body2 {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-image: url("images/math.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      z-index: -20;
+    }
+
+    #body2::after {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 255, 255, 0.85);
+      z-index: -10;
+    }
+
+    .bienvenida-con-imagenes {
+      display: flex; align-items: center; justify-content: center;
+      gap: 2em; text-align: center;
+      background: #fff; border-radius: 10px;
+      padding: 1.5em 2em; margin: 2em 0 1.5em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .img-bienvenida, .img-bienvenida1 {
+      width: 200px; object-fit: contain; opacity: 1;
+    }
+    .img-bienvenida1 { height: 250px; }
+    .img-bienvenida  { height: 200px; }
+
+    .box.special a.button { margin: 0.5em auto; }
+
+    #footer2 {
+      background: #f1f1f1; padding: 0.1em 0;
+      text-align: center; margin-top: auto; width: 100%;
+    }
+
+    #footer2 ul {
+      list-style: none; margin: 0 auto; padding: 0;
+      display: inline-block;
+    }
+
+    #footer2 li {
+      display: inline; margin: 0 1em;
+      font-size: 1em; color: #444; font-weight: 500;
+    }
+
+    #nombrePerfil, #rolPerfil {
+      font-size: 1.3em; font-weight: 600;
+      margin: 1.5em 0; color: #666;
+    }
+
+    #avatarPerfil {
+      width: 150px; height: 150px;
+      border-radius: 50%; margin-bottom: 10px;
+    }
+
+    .modal-avatar {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.6); display: flex;
+      justify-content: center; align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-contenido-avatar {
+      background: #fff; padding: 2em; border-radius: 10px; text-align: center;
+    }
+
+    .avatar-opciones img {
+      width: 100px; height: 100px; margin: 10px;
+      cursor: pointer; border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+
+    .avatar-opciones img:hover { transform: scale(1.1); }
+
+    .boton-cerrar-avatar {
+      background-color: #f28c7f; color: white;
+      font-size: 1em; font-weight: bold;
+      padding: 0.6em 1.5em; border: none;
+      border-radius: 12px; margin-top: 1em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease; cursor: pointer;
+    }
+
+    .boton-cerrar-avatar:hover {
+      background-color: #f06c5e; transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .boton-cerrar-avatar:active { transform: scale(0.98); }
+
+    /* Menús desplegables */
+    .dropotron.level-0 {
+      background-color: var(--color-secundario) !important;
+      border-radius: 6px;
+      padding: 0.5em 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+    }
+
+    .dropotron.level-0 li a {
+      display: block;
+      padding: 0.75em 1.5em;
+      color: var(--color-texto);
+      font-weight: 400;
+      text-decoration: none;
+      background: transparent;
+    }
+
+    .dropotron.level-0 li a:hover {
+      background-color: var(--color-link-hover) !important;
+      color: #fff !important;
+    }
+
+    body.dark .dropotron.level-0 {
+      background-color: #222 !important;
+      border: 1px solid #444;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark .dropotron.level-0 li a { color: #fff; }
+
+    body.dark .dropotron.level-0 li a:hover {
+      background-color: #ffa56a !important;
+      color: #111 !important;
+    }
+  </style>
+</head>
+<body class="landing is-preload">
+<div id="body2"></div>
+<div id="page-wrapper">
+  <header id="header">
+    <h1><a href="index.html">WEB CLASS</a> <span data-i18n="by_grupo">por Grupo 04</span></h1>
+    <nav id="nav">
+      <ul>
+        <li><a href="bienvenida.html" data-i18n="nav_inicio">Inicio</a></li>
+        <li>
+          <a href="#" class="icon solid fa-angle-down" data-i18n="nav_layouts">Contenido</a>
+          <ul>
+            <li><a href="videos.html" data-i18n="nav_videos">Videos Educativos</a></li>
+            <li><a href="juegos.html" data-i18n="nav_juegos">Juegos Interactivos</a></li>
+            <li><a href="practicas.html" data-i18n="nav_practicas">Prácticas</a></li>
+            <li><a href="simulacros.html" data-i18n="nav_simulacros">Simulacros</a></li>
+          </ul>
+        </li>
+        <li><a href="perfil.html" data-i18n="nav_perfil">Mi Perfil</a></li>
+        <li><button onclick="toggleDarkMode()" class="button">🌙 <span data-i18n="modo_oscuro">Modo oscuro</span></button></li>
+        <li><button onclick="toggleTextSize()" class="button">🔠 <span data-i18n="aumentar_texto">Aumentar texto</span></button></li>
+        <li><button onclick="toggleVoice()" class="button">🗣️ <span data-i18n="leer_pagina">Leer página</span></button></li>
+        <li>
+          <a href="#" class="icon solid fa-angle-down"><span class="icon solid fa-globe"></span> <span data-i18n="idioma">Idiomas</span></a>
+          <ul>
+            <li><a href="#" data-lang="es"><img src="images/peru.png" alt="Español" style="width: 20px; height: 14px; vertical-align: middle; margin-right: 6px;" />Español</a></li>
+            <li><a href="#" data-lang="en"><img src="images/usa.png" alt="Inglés" style="width: 20px; height: 14px; vertical-align: middle; margin-right: 6px;" />Inglés</a></li>
+            <li><a href="#" data-lang="pt"><img src="images/brasil.png" alt="Português" style="width: 20px; height: 14px; vertical-align: middle; margin-right: 6px;" />Portugués</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html" class="button" data-i18n="cerrar_sesion">Cerrar sesión</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container">
+      <div class="row aln-center">
+        <div class="col-12">
+          <section class="box special bienvenida-con-imagenes">
+            <img src="images/robot1.png" alt="Robot" class="img-bienvenida1">
+            <div>
+              <h2 data-i18n="titulo_perfil">Mi Perfil</h2>
+              <p data-i18n="descripcion_perfil">Consulta y actualiza tu información personal.</p>
+            </div>
+            <img src="images/buhobienvenida.png" alt="Búho" class="img-bienvenida">
+          </section>
+        </div>
+      </div>
+      <div class="row aln-center">
+        <div class="col-6 col-12-narrower">
+          <section class="box special" style="text-align: center;">
+            <img id="avatarPerfil" src="images/avatar-perrito.png" alt="Avatar">
+            <h3 id="nombrePerfil" data-i18n="nombre_usuario">Nombre: -</h3>
+            <p id="rolPerfil" data-i18n="rol_usuario">Rol: -</p>
+            <p id="correoPerfil" data-i18n="correo_usuario" style="display:none;">Correo:</p>
+            <a href="#" class="button" onclick="abrirSelectorAvatar()" data-i18n="editar_perfil">Editar Perfil</a>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modalAvatar" class="modal-avatar" style="display:none;">
+    <div class="modal-contenido-avatar">
+      <h3 data-i18n="titulo_selecciona_avatar">Selecciona tu avatar</h3>
+      <div class="avatar-opciones">
+        <img src="images/avatar-nino.png" alt="Niño" onclick="seleccionarAvatar(1)">
+        <img src="images/avatar-nina.png" alt="Niña" onclick="seleccionarAvatar(2)">
+        <img src="images/avatar-robot-nino.png" alt="Robot Niño" onclick="seleccionarAvatar(3)">
+        <img src="images/avatar-robot-nina.png" alt="Robot Niña" onclick="seleccionarAvatar(4)">
+        <img src="images/avatar-perrito.png" alt="Perrito" onclick="seleccionarAvatar(5)">
+      </div>
+      <button class="boton-cerrar-avatar" onclick="cerrarSelectorAvatar()">❌<span data-i18n="boton_cerrar"> Cerrar</span></button>
+    </div>
+  </div>
+
+  <footer id="footer2" role="contentinfo">
+    <ul class="copyright">
+      <li data-i18n="bienvenida_footer">&copy; WebClass - Grupo 04</li>
+    </ul>
+  </footer>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/accessibility.js"></script>
+<script src="assets/js/translate.js"></script>
+<script src="assets/js/lang.js"></script>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/accessibility.js"></script>
+<script src="assets/js/translate.js"></script>
+<script src="assets/js/lang.js"></script>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/accessibility.js"></script>
+<script src="assets/js/translate.js"></script>
+<script src="assets/js/lang.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const idiomaGuardado = localStorage.getItem("idiomaWebClass") || "es";
+    cambiarIdioma(idiomaGuardado);
+
+    // Activar botón Editar Perfil
+    const botonEditar = document.getElementById("editarPerfilBtn");
+    if (botonEditar) {
+      botonEditar.addEventListener("click", abrirSelectorAvatar);
+    }
+
+    // Activar cierre de selector si existe
+    const cerrarBtn = document.getElementById("cerrarModalAvatar");
+    if (cerrarBtn) {
+      cerrarBtn.addEventListener("click", cerrarSelectorAvatar);
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    const langLink = e.target.closest("a[data-lang]");
+    if (langLink) {
+      e.preventDefault();
+      const idioma = langLink.getAttribute("data-lang");
+      localStorage.setItem("idiomaWebClass", idioma);
+      cambiarIdioma(idioma);
+    }
+  }, true);
+
+  // ✅ Actualizar perfil con traducción dinámica
+  function actualizarPerfil() {
+    let nombre = localStorage.getItem("nombreUsuario");
+    let rol = localStorage.getItem("rolUsuario");
+    let correo = localStorage.getItem("correoUsuario");
+
+    const nombresInvitado = ["invitado", "guest", "convidado"];
+    if (!nombre || nombresInvitado.includes(nombre.trim().toLowerCase()) || nombre.trim() === "") {
+      nombre = traducciones?.invitado_nombre || "Invitado";
+      rol = traducciones?.invitado_rol || "Estudiante";
+      correo = "";
+
+      localStorage.setItem("nombreUsuario", nombre);
+      localStorage.setItem("rolUsuario", rol);
+      localStorage.setItem("correoUsuario", correo);
+    }
+
+    const foto = localStorage.getItem("fotoPerfil") || "images/avatar-perrito.png";
+
+    document.getElementById("nombrePerfil").textContent = `${traducciones?.nombre_usuario || "Nombre"} ${nombre}`;
+    document.getElementById("rolPerfil").textContent = `${traducciones?.rol_usuario || "Rol"} ${rol}`;
+
+    if (correo && !nombresInvitado.includes(nombre.trim().toLowerCase())) {
+      document.getElementById("correoPerfil").textContent = `${traducciones?.correo_usuario || "Correo"} ${correo}`;
+      document.getElementById("correoPerfil").style.display = "block";
+    } else {
+      document.getElementById("correoPerfil").style.display = "none";
+    }
+
+    document.getElementById("avatarPerfil").src = foto;
+  }
+
+  // ✅ Abre el modal de selección de avatar
+  function abrirSelectorAvatar() {
+    const modal = document.getElementById("modalAvatar");
+    if (modal) modal.style.display = "flex";
+  }
+
+  // ✅ Cierra el modal de selección de avatar
+  function cerrarSelectorAvatar() {
+    const modal = document.getElementById("modalAvatar");
+    if (modal) modal.style.display = "none";
+  }
+
+  // ✅ Selecciona un avatar desde el modal
+  function seleccionarAvatar(opcion) {
+    const opciones = [
+      "images/avatar-nino.png",
+      "images/avatar-nina.png",
+      "images/avatar-robot-nino.png",
+      "images/avatar-robot-nina.png",
+      "images/avatar-perrito.png"
+    ];
+    const nuevaFoto = opciones[opcion - 1];
+    localStorage.setItem("fotoPerfil", nuevaFoto);
+    document.getElementById("avatarPerfil").src = nuevaFoto;
+    cerrarSelectorAvatar();
+  }
+</script>
+
+</body>
+</html>
