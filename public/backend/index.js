@@ -8,6 +8,9 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// SERVIR ARCHIVOS ESTÁTICOS (HTML, CSS, JS)
+app.use(express.static('public'));
+
 // ENDPOINT DE LOGIN
 app.post('/login', async (req, res) => {
   const { usuario, contraseña } = req.body;
@@ -23,7 +26,7 @@ app.post('/login', async (req, res) => {
       res.json({
         success: true,
         nombre: user.nombre,
-        rol: "Estudiante"  // Aquí puedes ajustar según necesites
+        rol: "Estudiante"
       });
     } else {
       res.json({ success: false });
@@ -33,7 +36,6 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ success: false, error: 'Error interno del servidor' });
   }
 });
-
 
 // INICIO DEL SERVIDOR
 app.listen(PORT, () => {
